@@ -16,10 +16,10 @@ final class ShowAction
         private PayloadProviderInterface $payloadProvider
     ) {}
 
-    public function __invoke(Request $request)
+    public function __invoke($request)
     {
         $payload = $this->payloadProvider->provide($request);
 
-        return $this->responder->response();
+        return $this->arrayResponse->response($payload);
     }
 }

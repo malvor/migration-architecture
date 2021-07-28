@@ -6,5 +6,5 @@ namespace App\UI\Responder;
 
 interface ResponderInterface
 {
-    public function response(string $template, array $data);
+    public function response(array $data, ?string $template = null);
 }

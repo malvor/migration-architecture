@@ -8,7 +8,7 @@ use App\UI\Responder\ResponderInterface;
 
 final class ArrayResponse implements ResponderInterface
 {
-    public function response(string $template, array $data)
+    public function response(array $data, ?string $template = null)
     {
         return $data;
     }
