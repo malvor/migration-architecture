@@ -1,0 +1,39 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            App\UI\Responder\ResponderInterface $arrayResponse: '@App\UI\Responder\ArrayResponse'
+            iterable $requestProviders: !tagged_iterator app.request_provider
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+
+    app.controller.user.show:
+        public: true
+        class: 'App\UI\Controller\User\ShowAction'
+
+    App\UI\Payload\SymfonyPayloadProvider:
+        class: App\UI\Payload\SymfonyPayloadProvider
+        tags: ['app.request_provider']
+    App\UI\Payload\LegacyPayloadProvider:
+        class: App\UI\Payload\LegacyPayloadProvider
+        tags: ['app.request_provider']

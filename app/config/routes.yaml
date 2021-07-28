@@ -1,0 +1,7 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+hello:
+    path:     /
+    controller: app.controller.user.show
+    methods: GET
