@@ -5,8 +5,9 @@
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/app/tests" isTestSource="true" packagePrefix="App\Tests\" />
-      <sourceFolder url="file://$MODULE_DIR$/app/src" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/legacy/src" isTestSource="false" packagePrefix="Legacy\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/src/App" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/src/UI" isTestSource="false" packagePrefix="UI\" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/doctrine/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/doctrine/cache" />
@@ -74,6 +75,11 @@
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/twig/extra-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/twig/twig" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/polyfill-php81" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/amqp-messenger" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/doctrine-messenger" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/redis-messenger" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/messenger" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/beberlei/assert" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

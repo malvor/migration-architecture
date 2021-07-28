@@ -5,3 +5,8 @@ hello:
     path:     /
     controller: app.controller.user.show
     methods: GET
+
+create:
+    path: /create
+    controller: app.controller.user.create
+    methods: GET

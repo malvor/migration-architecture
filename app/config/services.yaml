@@ -11,29 +11,60 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         bind:
-            App\UI\Responder\ResponderInterface $arrayResponse: '@App\UI\Responder\ArrayResponse'
+            UI\Responder\ResponderInterface $arrayResponse: '@UI\Responder\ArrayResponse'
             iterable $requestProviders: !tagged_iterator app.request_provider
+
+    _instanceof:
+        App\Shared\Infrastructure\Bus\Event\EventHandlerInterface:
+            tags:
+                - { name: messenger.message_handler, bus: messenger.bus.event }
+
+        App\Shared\Application\Command\CommandHandlerInterface:
+            tags:
+                - { name: messenger.message_handler, bus: messenger.bus.command }
+        App\Shared\Application\Query\QueryHandlerInterface:
+            tags:
+                - { name: messenger.message_handler, bus: messenger.bus.query }
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
-        resource: '../src/'
-        exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
-            - '../src/Tests/'
-
+        resource: '../src/App'
+    UI\:
+        resource: '../src/UI'
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
 
     app.controller.user.show:
         public: true
-        class: 'App\UI\Controller\User\ShowAction'
+        class: 'UI\Controller\User\ShowAction'
+    app.controller.user.create:
+        public: true
+        class: 'UI\Controller\User\CreateAction'
 
-    App\UI\Payload\SymfonyPayloadProvider:
-        class: App\UI\Payload\SymfonyPayloadProvider
+    UI\Payload\SymfonyPayloadProvider:
         tags: ['app.request_provider']
-    App\UI\Payload\LegacyPayloadProvider:
-        class: App\UI\Payload\LegacyPayloadProvider
+    UI\Payload\LegacyPayloadProvider:
         tags: ['app.request_provider']
+
+    App\Shared\Infrastructure\Bus\Event\MessengerEventBus:
+        public: true
+        arguments:
+              - '@messenger.bus.event'
+    App\Shared\Infrastructure\Bus\Command\MessengerCommandBus:
+        public: true
+        arguments:
+          - '@messenger.bus.command'
+    App\User\Domain\Repository\UserRepositoryInterface:
+        class: \Legacy\Model\User
+    App\User\Domain\Specification\UniqueEmailSpecificationInterface:
+        class: \Legacy\Model\User
+#    App\User\Domain\Repository\UserRepositoryInterface:
+#        class: \App\User\Infrastructure\Repository\Mysql\UserMysqlRepository
+#    App\User\Domain\Specification\UniqueEmailSpecificationInterface:
+#        class: \App\User\Infrastructure\Repository\Mysql\UserMysqlRepository
+#    App\User\Domain\Repository\UserRepositoryInterface:
+#        class: \App\User\Infrastructure\Repository\InMemory\UserInMemoryRepository
+#    App\User\Domain\Specification\UniqueEmailSpecificationInterface:
+#        class: \App\User\Infrastructure\Repository\InMemory\UserInMemoryRepository
+

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\UI\Payload;
+namespace UI\Payload;
 
-use App\UI\Payload\Exception\InvalidRequestProvider;
-use App\UI\Payload\PayloadProviderInterface;
-use App\UI\Payload\RequestProviderInterface;
+use UI\Payload\Exception\InvalidRequestProvider;
+use UI\Payload\PayloadProviderInterface;
+use UI\Payload\RequestProviderInterface;
 
 final class PayloadProvider implements PayloadProviderInterface
 {

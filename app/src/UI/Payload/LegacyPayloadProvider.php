@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\UI\Payload;
+namespace UI\Payload;
 
-use App\UI\Payload\RequestProviderInterface;
 use JetBrains\PhpStorm\Pure;
 use Legacy\LegacyRequest;
 

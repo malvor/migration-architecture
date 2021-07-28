@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\UI\Responder;
+namespace UI\Responder;
 
-use App\UI\Responder\ResponderInterface;
+use UI\Responder\ResponderInterface;
 
 final class ArrayResponse implements ResponderInterface
 {

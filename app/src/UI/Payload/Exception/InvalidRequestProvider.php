@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\UI\Payload\Exception;
+namespace UI\Payload\Exception;
 
 use JetBrains\PhpStorm\Pure;
 

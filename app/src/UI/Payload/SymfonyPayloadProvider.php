@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\UI\Payload;
+namespace UI\Payload;
 
-use App\UI\Payload\RequestProviderInterface;
+use UI\Payload\RequestProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 final class SymfonyPayloadProvider implements RequestProviderInterface

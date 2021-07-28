@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\UI\Controller\User;
+namespace UI\Controller\User;
 
-use App\UI\Payload\PayloadProviderInterface;
-use App\UI\Responder\ResponderInterface;
-use Symfony\Component\HttpFoundation\Request;
+use UI\Payload\PayloadProviderInterface;
+use UI\Responder\ResponderInterface;
+use Legacy\LegacyRequest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 final class ShowAction
@@ -16,7 +16,7 @@ final class ShowAction
         private PayloadProviderInterface $payloadProvider
     ) {}
 
-    public function __invoke($request)
+    public function __invoke(LegacyRequest $request)
     {
         $payload = $this->payloadProvider->provide($request);
 
